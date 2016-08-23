@@ -1,0 +1,10 @@
+
+(function(context, _, $){
+        
+    context.UserModelCollection = Backbone.collection.extend({
+	model : UserModel
+		
+    });
+
+
+})(window, _, jQuery);

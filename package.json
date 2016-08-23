@@ -1,0 +1,21 @@
+{
+  "name": "users.management.js",
+  "version": "0.0.1",
+  "description": "User management application written in Javascript (Backbonejs, underscore, jquery, coffeePubSub, bootstrap) with persistence layer in Google Firebase Database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "backbonejs",
+    "underscorejs",
+    "jquery",
+    "coffeePubSub",
+    "bootstrap",
+    "mvc",
+    "firebase"
+  ],
+  "author": "Volosincu Bogdan",
+  "license": "GPL-3.0"
+}

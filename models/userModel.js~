@@ -1,0 +1,10 @@
+
+(function(context, _, $){
+        
+    context.UserModel = Backbone.View.extend({
+
+		
+    });
+
+
+})(window, _, jQuery);
