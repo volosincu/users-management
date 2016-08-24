@@ -9,8 +9,11 @@
   </head>
 
   <body>
+    <header id="header"></header>
 
     <!-- html body -->
+    <section id="main-section" class="section"></section>
+    
     
   </body>
 
@@ -29,14 +32,226 @@
   <script src="bower_components/underscore/underscore-min.js"></script>
   <script src="bower_components/backbone/backbone-min.js"></script>
 
-  <script src="router.js"></script>
 
   <script src="models/userModel.js"></script>
   <script src="models/userModelCollection.js"></script>
+
+  <script src="views/userFormView.js"></script>
+  
+  <script src="models/headerModel.js"></script>
+  <script src="views/headerView.js"></script>
+
+  <script src="models/tabsModel.js"></script>
+  <script src="views/tabsView.js"></script>
   
   <script src="views/userView.js"></script>
   <script src="views/userCollectionView.js"></script>
 
+
+
+  <script src="router.js"></script>
+  
+  <style>
+
+    .show {
+    display: inline-block;
+    }
+
+    .hide {
+    display: none;
+    }
+
+    header {
+    height : 65px;
+    max-width: 1400px;
+    margin: auto;
+    margin-right: 20px;
+
+    }
+
+    .header-opt {
+    float: right;
+    margin-top: 15px;
+    
+    }
+
+    .header-opt .hinfo {
+    display : inline-block;
+    border-right : 1px solid #ccc;
+    margin-right : 10px;
+    padding: 5px 5px;
+    }
+
+
+    .header-opt .hinfo span{
+    color : #204d74;
+    font-weight: normal;
+    }
+
+    .section {
+    max-width: 1400px;
+    margin: auto;
+    }
+
+    #main-section .panel{
+    border: none;
+    box-shadow: none;
+    }
+
+
+    #main-section  .block-tab {
+    display: none;
+    }
+    
+    </style>
+
+  <script id="header-tmpl" type="text/html">
+    
+      <div class="header-opt <%=logged %>">
+	<div class="hinfo">hello <span class="hdiff"><%=displayName%></span> </div>
+	<div class="hinfo"><span class="hdiff"><%=email %></span> </div>
+
+	<button id="sign-out" type="button" class="btn btn-primary">sign out</button>
+      </div>
+      
+      <div class="header-opt <%=loggedout %>">
+	<div class="hinfo">hello <span class="hdiff">guest</span> </div>
+		
+	<button id="sign-in" type="button" class="btn btn-primary">sing in</button>
+      </div>
+
+  </script>
+
+
+  
+  <script id="user-form-tmpl" type="text/html">
+    <div class="container">
+      <form class="">
+
+	
+	<div class="col-xs-6">
+	  
+	  <div class="form-group row">
+	    <label for="email" class="col-sm-2 col-form-label">Email</label>
+	    <div class="col-sm-7">
+	      <input type="email" class="form-control" id="email" placeholder="Email">
+	    </div>
+	  </div>
+	  <div class="form-group row">
+	    <label for="name" class="col-sm-2 col-form-label">Name</label>
+	    <div class="col-sm-7">
+	      <input type="text" class="form-control" id="name" placeholder="Name">
+	    </div>
+	  </div>
+
+
+	  <div class="form-group row">
+	    <label for="job" class="col-sm-2 col-form-label">Job</label>
+	    <div class="col-sm-7">
+	      <input type="text" class="form-control" id="name" placeholder="Job">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <div class="offset-sm-2 col-sm-7">
+	      <button type="button" class="btn btn-primary">Add User</button>
+	    </div>
+	  </div>
+	  
+	  
+	</div>
+
+
+
+	
+	<div class="col-xs-6">
+	  
+	  <div class="form-group row">
+	    <label for="city" class="col-sm-2 col-form-label">City</label>
+	    <div class="col-sm-7">
+	      <input type="text" class="form-control" id="city" placeholder="City">
+	    </div>
+	  </div>
+	  
+	  
+	  <div class="form-group row">
+	    <label class="col-sm-2">Married</label>
+	    <div class="col-sm-7">
+	      <div class="form-check">
+		<label class="form-check-label">
+		  <input class="form-check-input" type="checkbox"> </input>
+		</label>
+	      </div>
+	    </div>
+	  </div>
+	  
+	  
+	  
+	</div>
+	
+	
+      </form>
+    </div>
+
+
+    <br/>
+    <hr/>
+    <br/>
+
+
+    <div class="container">
+      <form class="">
+
+	<div class="col-xs-6">
+	  
+	  <div class="form-group row">
+	    <label for="name" class="col-sm-3 col-form-label">Grup Name</label>
+	    <div class="col-sm-7">
+	      <input type="text" class="form-control" id="name" placeholder="Name">
+	    </div>
+	  </div>
+	  
+	  
+	  
+	  <div class="form-group row">
+	    <div class="offset-sm-2 col-sm-7">
+	      <button type="button" class="btn btn-primary">Add Group</button>
+	    </div>
+	  </div>
+	  
+	  
+	</div>
+
+	</form>
+      </div>
+    
+  </script>
+  
+
+
+  <script id="tabs-tmpl" type="text/html">
+    <ul class="nav nav-tabs">
+      <li role="presentation" id="tab-view" class="active"><a href="#">View</a></li>
+      <li role="presentation" id="tab-create" class=""><a href="#">Create</a></li>
+    </ul>
+
+    <div id="block-view" class="panel panel-default show block-tab">
+
+      <div id="create-forms" class="panel-body">
+	 
+      </div>
+    </div>
+    <div id="block-create" class="panel panel-default block-tab">
+
+      <div class="panel-body">
+
+	  </div>
+    </div>
+
+
+    
+  </script>
+  
   
 </html>
 

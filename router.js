@@ -5,46 +5,73 @@
 
 var Router = Backbone.Router.extend({
 
-
     initialize: function() {
 	Backbone.history.start();
     },
-
     
     routes: {
-	"":                    "home", 
-	"login":                "login"
+	"": "home", 
+	"login": "login"
     },
-    
     
     home : function() {
-	//$("#login-frame").css({display : "none"});
-	console.log("home");
+	console.log(firebase.auth().currentUser);	
     },
-
+    
     login: function() {
-
-	console.log(firebase.auth().currentUser);
+	
 	if(firebase.auth().currentUser != null){
 	    window.location = "/"
 	}else {
-	    console.log("login");
-	    //$("#login-frame").css({display : "inherit"});
-	    
-	    window.open("login.html","_blank","height=600,width=700, status=yes,toolbar=no,menubar=no,location=no");
+	    var _params = [
+		"login.html",
+		"_blank",
+		"height=600,width=700, status=yes,toolbar=no,menubar=no,location=no"
+	    ];
+	    window.open.apply(_params);
 	}
-    }
-
-
-        
+    }     
 
 });
 
 
-
-
-
 new Router();
+
+
+
+/**
+ *  catch firebase authentication event
+ */
+
+firebase.auth().onAuthStateChanged(function(user) {
+    var header, headerView, tabs, tabsView;
+
+    if (user) {
+        // User is signed in.
+
+	header = new HeaderModel({
+	    logged : "show",
+	    loggedout : "hide",
+	    displayName: user.displayName,
+	    email : user.email
+	});
+				
+    } else {
+	header = new HeaderModel({
+		logged : "hide",
+		loggedout : "show"
+	});
+	
+    }
+
+    headerView = new HeaderView({el: '#header', model : header});
+    headerView.render();
+
+    tabs = new TabsModel();
+    tabsView = new TabsView({el : '#main-section', model : tabs});
+    tabsView.render();
+});
+
 
 
 
