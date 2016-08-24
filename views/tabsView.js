@@ -15,7 +15,7 @@
 	    this.$el.html(html);
 	    
 	    this.userFormView.$el = this.$('#create-forms');
-	    this.userFormView.model = new UserModel();;
+	    this.userFormView.model = new User();;
 	    this.userFormView.render();
 	    this.userFormView.delegateEvents();
 	    
