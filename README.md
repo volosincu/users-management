@@ -23,3 +23,4 @@ The database can be interogated directly at this enpoints :
 
 NOTE: the application may loading more faster or slower depending on the hosting.
 
+Please try refreshing the page if the server doesn't respond.
