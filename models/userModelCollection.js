@@ -2,7 +2,7 @@
 (function(context, _, $){
         
     context.UsersCollection = Backbone.Collection.extend({
-	url : FIREBASE_CONFIG + '/users.json',
+	url : FIREBASE_CONFIG.databaseURL + '/users.json',
 	model: User,
 	
 	parse: function(response){

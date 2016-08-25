@@ -4,7 +4,7 @@
     context.User = Backbone.Model.extend({
     
 	url : function (){
-	    return FIREBASE_CONFIG+"/users/' + this.get("id") + ".json"
+	    return FIREBASE_CONFIG.databaseURL +'/users/' + this.get("id") + ".json";
 	},
 	defaults : function (){
 	    return {

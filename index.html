@@ -21,15 +21,13 @@
 
 
   
-
-
   <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-database.js"></script>
-
+  
   <script src="firebase.init.js"></script>
-
+  
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/underscore/underscore-min.js"></script>
   <script src="bower_components/backbone/backbone-min.js"></script>
@@ -209,9 +207,9 @@
 	
 	<button
 	   type="button"
-	   <% if(users.split(",").length == 1 || users.split(",").length == 0 ){ %>
+	   <% if(users.split(",").length != 1 ){ %>
 	      disabled="disabled"
-	   <%} %>
+	   <% } %>
 	   id="delete"
 	   class="btn btn-primary deleteg">delete</button>
 	

@@ -4,7 +4,7 @@
     context.Group = Backbone.Model.extend({
     
 	url : function (){
-	    return FIREBASE_CONFIG+'/groups/' + this.get("id") + ".json"
+	    return FIREBASE_CONFIG.databaseURL + '/groups/' + this.get("id") + ".json"
 	},
 	defaults : function (){
 	    return {

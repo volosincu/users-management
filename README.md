@@ -3,4 +3,9 @@ User management application written in Javascript (Backbonejs, underscore, jquer
 
 
 
-DEMO : https://bbscript-5db8e.firebaseapp.com/index.html
+DEMO : https://user-management-3ecf9.firebaseapp.com
+
+
+$curl 'https://user-management-3ecf9.firebaseio.com/users.json' | jq
+
+$curl 'https://user-management-3ecf9.firebaseio.com/users/878431478495695.js

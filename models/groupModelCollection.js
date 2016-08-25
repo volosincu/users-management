@@ -1,7 +1,7 @@
 (function(context, _, $){
         
     context.GroupsCollection = Backbone.Collection.extend({
-	url : FIREBASE_CONFIG + '/groups.json',
+	url : FIREBASE_CONFIG.databaseURL + '/groups.json',
 	model: Group,
 		
 	parse: function(response){
