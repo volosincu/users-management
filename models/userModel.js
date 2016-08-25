@@ -4,7 +4,7 @@
     context.User = Backbone.Model.extend({
     
 	url : function (){
-	    return 'https://bbscript-5db8e.firebaseio.com/users/' + this.get("id") + ".json"
+	    return FIREBASE_CONFIG+"/users/' + this.get("id") + ".json"
 	},
 	defaults : function (){
 	    return {

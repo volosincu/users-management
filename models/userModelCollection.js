@@ -2,18 +2,8 @@
 (function(context, _, $){
         
     context.UsersCollection = Backbone.Collection.extend({
-	url : 'https://bbscript-5db8e.firebaseio.com/users.json',
+	url : FIREBASE_CONFIG + '/users.json',
 	model: User,
-	
-	initialize : function(){
-	    this.on("change", function(){
-		console.log("change in Users Collection");
-	    });
-	    
-	    this.on("add", function(){
-		console.log("add in Users Collection");
-	    });
-	},
 	
 	parse: function(response){
 	    var items = [];

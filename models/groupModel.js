@@ -4,7 +4,7 @@
     context.Group = Backbone.Model.extend({
     
 	url : function (){
-	    return 'https://bbscript-5db8e.firebaseio.com/groups/' + this.get("id") + ".json"
+	    return FIREBASE_CONFIG+'/groups/' + this.get("id") + ".json"
 	},
 	defaults : function (){
 	    return {
