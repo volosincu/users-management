@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>user.management.js</title>
 
-    <link rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 
   </head>
 
@@ -209,7 +209,7 @@
 	
 	<button
 	   type="button"
-	   <% if(users.split(",").length > 1){ %>
+	   <% if(users.split(",").length == 1 || users.split(",").length == 0 ){ %>
 	      disabled="disabled"
 	   <%} %>
 	   id="delete"
