@@ -91,6 +91,15 @@ header {
     margin-right: 10px;
 }
 
+.pnl .list-group-item .tmpl-col {
+    overflow: hidden;
+}
+
+.pnl .list-group-item .group-memb {
+    font-weight : bold;
+    color: #bd3f3f;
+}
+
 
 [data-notify="progressbar"] {
     margin-bottom: 0px;

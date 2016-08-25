@@ -26,6 +26,10 @@
 	    PubSub.on('refresh-list-view', function(){
 		updateTabsView(self);
 	    });
+
+	    PubSub.on('refresh-group-list', function(){
+		WidgetCreatorService.createGroupList(self, "#group-list");
+	    });
 	},
 	
 	render : function(){

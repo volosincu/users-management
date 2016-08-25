@@ -21,11 +21,13 @@
 
 	    var re = /\S+@\S+\.\S+/;
 	    var vemail = re.test(props.email);
+
+	    var retst = /^[a-zA-Z\d\-_.,\s]+$/.test(props.name);
 	    
-	    if(!props.email  || (props.email && props.email.length > 20) || !vemail ){
-		return "Error: Email is a required field. Between 0 and 20 chars. (string@string.string)"
+	    if(!props.email  || (props.email && props.email.length > 30) || !vemail ){
+		return "Error: Email is a required field. Between 0 and 30 chars. (string@string.string)"
 	    }else if(!props.name || (props.name && props.name.length > 20)){
-		return "Error: Name is a required field. Between 0 and 20 chars."
+		return "Error: Name is a required field. Between 0 and 20 alphanumeric chars !"
 	    }else if(!props.job || (props.job && props.job.length > 20)){
 		return "Error: Job is a required field. Between 0 and 20 chars."
 	    }else if(!props.city || (props.city && props.city.length > 20)){
@@ -33,12 +35,6 @@
 	    }
 	},
 	
-	initialize : function(){
-	    
-	    this.on("change", function(){
-		console.log("Change/Save in User model with id " + this.get("id"));
-	    }, this);
-	}
     });
     
     

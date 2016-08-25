@@ -30,9 +30,12 @@
 	    var users = this.model.get("users").split(",");
 	    if(users.length === 0 || (users.length === 1 && users[0] === "")){
 		
-		new User({id: this.model.get("id")}).destroy({
-		    success : function(u){
-			console.log("deeelllllllllllxs00", u);
+		new Group({id: this.model.get("id")}).destroy({
+		    success : function(u, r){
+			PubSub.trigger("refresh-group-list" );
+			PubSub.trigger('notify', "Succesfully deleted group "+ u.get("name"));
+		    },error :function() {
+			PubSub.trigger('notify', "An error has ocured ! Group connot be deleted.");
 		    }
 		});
 			

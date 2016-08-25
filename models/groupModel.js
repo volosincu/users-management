@@ -14,17 +14,11 @@
 	    }
 	},
 	validate : function(props){
-	    if(!props.name || (props.name && props.name.length > 15)){
-		return "Error: Group name is a required field. Between 0 and 10 chars."
+	    var retst = /^[a-zA-Z\d\-_.,\s]+$/.test(props.name);
+	    if(!props.name || (props.name && props.name.length > 10) || !retst){
+		return "Error: Group name is required to be between 0 and 10 alphanumeric chars.."
 	    }
 	},
-	
-	initialize : function(){
-	    
-	    this.on("change", function(){
-		console.log("Change/Save in Group model with id " + this.get("id"));
-	    }, this);
-	}
     });
     
     

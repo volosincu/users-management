@@ -102,13 +102,13 @@
 	  <div class="form-group row">
 	    <label for="email" class="col-sm-2 col-form-label">Email</label>
 	    <div class="col-sm-7">
-	      <input type="email" class="form-control" id="email" placeholder="Email">
+	      <input maxlength="35" type="email" class="form-control" id="email" placeholder="Email">
 	    </div>
 	  </div>
 	  <div class="form-group row">
 	    <label for="name" class="col-sm-2 col-form-label">Name</label>
 	    <div class="col-sm-7">
-	      <input type="text" class="form-control" id="name" placeholder="Name">
+	      <input maxlength="35" type="text" class="form-control" id="name" placeholder="Name">
 	    </div>
 	  </div>
 
@@ -116,7 +116,7 @@
 	  <div class="form-group row">
 	    <label for="job" class="col-sm-2 col-form-label">Job</label>
 	    <div class="col-sm-7">
-	      <input type="text" class="form-control" id="job" placeholder="Job">
+	      <input maxlength="35" type="text" class="form-control" id="job" placeholder="Job">
 	    </div>
 	  </div>
 	  
@@ -133,7 +133,7 @@
 	  <div class="form-group row">
 	    <label for="city" class="col-sm-2 col-form-label">City</label>
 	    <div class="col-sm-7">
-	      <input type="text" class="form-control" id="city" placeholder="City">
+	      <input maxlength="35" type="text" class="form-control" id="city" placeholder="City">
 	    </div>
 	  </div>
 	  	  
@@ -167,7 +167,7 @@
 	  <div class="form-group row">
 	    <label for="name" class="col-sm-3 col-form-label">Grup Name</label>
 	    <div class="col-sm-7">
-	      <input type="text" class="form-control" id="name" placeholder="Name">
+	      <input maxlength="30" type="text" class="form-control" id="name" placeholder="Name">
 	    </div>
 	  </div>
 	  
@@ -189,9 +189,9 @@
 
   <script id="user-tmpl" type="text/html">
     <div class="user-name row">
-      <span class="col-md-4"><%=name %></span>
-      <span class="user-email col-md-4"><%=email %></span>
-      <div class="col-md-4">
+      <span class="col-md-4 tmpl-col"><%=name %></span>
+      <span class="user-email col-md-3 tmpl-col"><%=email %></span>
+      <div class="col-md-5">
 	<button type="button" id="leave" class="btn btn-primary">leave</button>
 	<button type="button" id="join" class="btn btn-primary join">join</button>
 	<button type="button" id="show-groups" class="btn btn-info groups"
@@ -203,10 +203,18 @@
 
   <script id="group-tmpl" type="text/html">
     <div class="group-name row">
-      <span class="col-md-3"><%=name %></span>
-      <span class="group-memb col-md-4"> users</span>
-      <div class="col-md-5">
-	<button type="button" id="delete" class="btn btn-primary deleteg">delete</button>
+      <span class="col-md-3 tmpl-col"><%=name %></span>
+      <span class="group-memb col-md-1 tmpl-col"> <%=users.split(",").length - 1 %></span>
+      <div class="col-md-7">
+	
+	<button
+	   type="button"
+	   <% if(users.split(",").length > 1){ %>
+	      disabled="disabled"
+	   <%} %>
+	   id="delete"
+	   class="btn btn-primary deleteg">delete</button>
+	
 	<button type="button" id="show-users" class="btn btn-info showusers"
 		 data-toggle="modal" data-target=".bs-example-modal-sm">users</button>
       </div>
@@ -225,7 +233,7 @@
       <div class="row">
 	<div class="sel-grup col-md-8">
 	  <input type="text" id="selected-group"  />
-	  <span class="sel-grup-label">selected group</span>
+	  <span class="sel-grup-label">select a group from list in order to join/leave</span>
 	  <input type="hidden" id="selected-group-id"  />
 	</div>
       </div>

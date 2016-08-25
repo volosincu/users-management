@@ -110,7 +110,7 @@ var Router = Backbone.Router.extend({
 	    offset: 20,
 	    spacing: 10,
 	    z_index: 1031,
-	    delay: 5000,
+	    delay: 3500,
 	    timer: 1000,
 	    url_target: '_blank',
 	    mouse_over: null,

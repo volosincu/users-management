@@ -10,6 +10,7 @@
 		o.save({users : (o.get("users") + ","+ nuser.get("id")) }, {
 		    success: function(){
 			var msg = "Added user: " + nuser.get("email") + " to group " + o.get("name");
+			PubSub.trigger("refresh-group-list" );
 			PubSub.trigger('notify', msg);
 		    },
 		    error: function(){
@@ -25,6 +26,7 @@
 		o.save({users : users.join(",")}, {
 		    success: function(){
 			var msg = "Removed user: " + nuser.get("email") + " from group " + o.get("name");
+			PubSub.trigger("refresh-group-list" );
 			PubSub.trigger('notify', msg);
 		    },
 		    error: function(){
