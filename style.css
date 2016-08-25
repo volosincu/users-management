@@ -1,0 +1,110 @@
+
+.show {
+    display: inline-block;
+}
+
+.hide {
+    display: none;
+}
+
+header {
+    height : 65px;
+    max-width: 1400px;
+    margin: auto;
+    padding-right: 20px;
+    
+}
+
+.header-opt {
+    float: right;
+    margin-top: 15px;
+    
+}
+
+.header-opt .hinfo {
+    display : inline-block;
+    border-right : 1px solid #ccc;
+    margin-right : 10px;
+    padding: 5px 5px;
+}
+
+
+.header-opt .hinfo span{
+    color : #204d74;
+    font-weight: normal;
+}
+
+.section {
+    max-width: 1400px;
+    margin: auto;
+}
+
+#main-section .panel{
+    border: none;
+    box-shadow: none;
+}
+
+
+#main-section  .block-tab {
+    display: none;
+    margin-top: 40px;
+}
+
+#main-section  .block-tab #selected-group {
+    float: right;
+}
+
+#block-view .pnl {
+    max-height: 500px;
+    overflow-y: scroll;    
+}
+
+.pnl .list-group-item span {
+    padding-top: 8px;
+}
+
+#block-view .sel-grup {
+    padding-bottom: 20px;
+}
+
+#block-view .sel-grup span{
+    float: right;
+    margin-right: 30px;
+    text-decoration: underline;
+    color: #868686;
+    padding-top: 3px;
+    
+}
+
+#block-view .sel-grup #selected-group {
+    float: right;
+}
+
+.pnl .list-group-item  button {
+    float: right;
+    display: inline-block;
+}
+
+.pnl .list-group-item .group-name .showusers,
+.pnl .list-group-item .user-name button.join ,
+.pnl .list-group-item .user-name button.groups  {
+    margin-right: 10px;
+}
+
+
+[data-notify="progressbar"] {
+    margin-bottom: 0px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 5px;
+}
+
+html .modal-sm {
+    width : 500px;
+}
+
+html .modal .modal-content #membership.list-group button {
+    display: none;
+}

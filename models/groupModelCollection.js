@@ -1,17 +1,16 @@
-
 (function(context, _, $){
         
-    context.UsersCollection = Backbone.Collection.extend({
-	url : 'https://bbscript-5db8e.firebaseio.com/users.json',
-	model: User,
+    context.GroupsCollection = Backbone.Collection.extend({
+	url : 'https://bbscript-5db8e.firebaseio.com/groups.json',
+	model: Group,
 	
 	initialize : function(){
 	    this.on("change", function(){
-		console.log("change in Users Collection");
+		console.log("change in Groups Collection");
 	    });
 	    
 	    this.on("add", function(){
-		console.log("add in Users Collection");
+		console.log("add in Groups Collection");
 	    });
 	},
 	

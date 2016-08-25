@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <title>user.management.js</title>
 
+    <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+
   </head>
 
   <body>
@@ -32,80 +34,44 @@
   <script src="bower_components/underscore/underscore-min.js"></script>
   <script src="bower_components/backbone/backbone-min.js"></script>
   <script src="bower_components/coffee-pub-sub/build/dest/publisher.min.js"></script>
+  <script src="bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
   
+    
 
   <script src="models/userModel.js"></script>
   <script src="models/userModelCollection.js"></script>
 
+
+  <script src="models/groupModel.js"></script>
+  <script src="models/groupModelCollection.js"></script>
+
+  <script src="service/widgetCreatorService.js"></script>
+  
+  
   <script src="views/userFormView.js"></script>
   
   <script src="models/headerModel.js"></script>
   <script src="views/headerView.js"></script>
 
+  <script src="views/userView.js"></script>
+  <script src="views/usersView.js"></script>
+
+  <script src="views/groupView.js"></script>
+  <script src="views/groupsView.js"></script>
+
+  
   <script src="models/tabsModel.js"></script>
   <script src="views/tabsView.js"></script>
-  
-  <script src="views/userView.js"></script>
-  <script src="views/userCollectionView.js"></script>
-
   
 
   <script src="router.js"></script>
   <script src="firebase.auth.js"></script>
+
+
   
-  <style>
-
-    .show {
-    display: inline-block;
-    }
-
-    .hide {
-    display: none;
-    }
-
-    header {
-    height : 65px;
-    max-width: 1400px;
-    margin: auto;
-    margin-right: 20px;
-
-    }
-
-    .header-opt {
-    float: right;
-    margin-top: 15px;
-    
-    }
-
-    .header-opt .hinfo {
-    display : inline-block;
-    border-right : 1px solid #ccc;
-    margin-right : 10px;
-    padding: 5px 5px;
-    }
-
-
-    .header-opt .hinfo span{
-    color : #204d74;
-    font-weight: normal;
-    }
-
-    .section {
-    max-width: 1400px;
-    margin: auto;
-    }
-
-    #main-section .panel{
-    border: none;
-    box-shadow: none;
-    }
-
-
-    #main-section  .block-tab {
-    display: none;
-    }
-    
-    </style>
 
   <script id="header-tmpl" type="text/html">
     
@@ -128,7 +94,7 @@
   
   <script id="user-form-tmpl" type="text/html">
     <div class="container">
-      <form class="">
+      <form id="user-block">
 
 	
 	<div class="col-xs-6">
@@ -150,13 +116,13 @@
 	  <div class="form-group row">
 	    <label for="job" class="col-sm-2 col-form-label">Job</label>
 	    <div class="col-sm-7">
-	      <input type="text" class="form-control" id="name" placeholder="Job">
+	      <input type="text" class="form-control" id="job" placeholder="Job">
 	    </div>
 	  </div>
 	  
 	  <div class="form-group row">
 	    <div class="offset-sm-2 col-sm-7">
-	      <button type="button" class="btn btn-primary">Add User</button>
+	      <button id="save-user" type="button" class="btn btn-primary">Add User</button>
 	    </div>
 	  </div>	  
 	</div>
@@ -176,7 +142,7 @@
 	    <div class="col-sm-7">
 	      <div class="form-check">
 		<label class="form-check-label">
-		  <input class="form-check-input" type="checkbox"> </input>
+		  <input class="form-check-input" id="married" type="checkbox"> </input>
 		</label>
 	      </div>
 	    </div>
@@ -194,7 +160,7 @@
 
 
     <div class="container">
-      <form class="">
+      <form id="group-block">
 
 	<div class="col-xs-6">
 
@@ -207,7 +173,7 @@
 	  
 	  <div class="form-group row">
 	    <div class="offset-sm-2 col-sm-7">
-	      <button type="button" class="btn btn-primary">Add Group</button>
+	      <button type="button" id="save-group" class="btn btn-primary">Add Group</button>
 	    </div>
 	  </div>
 	  
@@ -219,9 +185,35 @@
       </div>
     
   </script>
+
+
+  <script id="user-tmpl" type="text/html">
+    <div class="user-name row">
+      <span class="col-md-4"><%=name %></span>
+      <span class="user-email col-md-4"><%=email %></span>
+      <div class="col-md-4">
+	<button type="button" id="leave" class="btn btn-primary">leave</button>
+	<button type="button" id="join" class="btn btn-primary join">join</button>
+	<button type="button" id="show-groups" class="btn btn-info groups"
+		 data-toggle="modal" data-target=".bs-example-modal-sm">groups</button>
+      </div>
+    </div>
+  </script>
+
+
+  <script id="group-tmpl" type="text/html">
+    <div class="group-name row">
+      <span class="col-md-3"><%=name %></span>
+      <span class="group-memb col-md-4"> users</span>
+      <div class="col-md-5">
+	<button type="button" id="delete" class="btn btn-primary deleteg">delete</button>
+	<button type="button" id="show-users" class="btn btn-info showusers"
+		 data-toggle="modal" data-target=".bs-example-modal-sm">users</button>
+      </div>
+    </div>
+  </script>
   
-
-
+  
   <script id="tabs-tmpl" type="text/html">
     <ul class="nav nav-tabs">
       <li role="presentation" id="tab-view" class="active"><a href="#">View</a></li>
@@ -230,21 +222,56 @@
 
     <div id="block-view" class="panel panel-default show block-tab">
 
-      <div id="create-forms" class="panel-body">
-	 
+      <div class="row">
+	<div class="sel-grup col-md-8">
+	  <input type="text" id="selected-group"  />
+	  <span class="sel-grup-label">selected group</span>
+	  <input type="hidden" id="selected-group-id"  />
+	</div>
       </div>
-    </div>
-    <div id="block-create" class="panel panel-default block-tab">
 
-      <div class="panel-body">
-
+	  
+      <div class="row">
+	<div id="us-panel" class="pnl col-md-8">
+	  <div id="user-list" class="list-group">
+	    
 	  </div>
+	</div>
+	
+	<div id="gr-panel" class="pnl col-md-4">
+	  <div id="group-list" class="list-group">
+	    
+	  </div>
+	</div>
+	
+      </div>
+        
+    </div>
+
+    
+    <div id="block-create" class="panel panel-default block-tab">
+      <div id="create-forms" class="panel-body"> </div>
     </div>
 
 
     
   </script>
   
+
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+      <div  class="modal-content">
+
+	<div id="membership"  class="list-group">
+
+	  </div>
+	
+      </div>
+    </div>
+    </div>
+
+
+
   
 </html>
 

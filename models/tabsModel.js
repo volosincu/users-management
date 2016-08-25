@@ -5,7 +5,8 @@
 	defaults : function(){
 	    return {
 		view : true ,
-		create : false
+		create : false,
+		selectedGroup : null
 	    }
 	}
 		

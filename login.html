@@ -64,36 +64,19 @@
     opener.window.location = "/";
     window.close();
     });
-  
     
-      } else {
+    
+    } else {
     //window.close();
-      }
+    }
     }, function(error) {
     console.log(error);
-        window.close();
-       });
+    window.close();
+    });
     };
     
     window.addEventListener('load', function() {
-    initApp();
-
-  //  document.getElementById('btt').addEventListener('click', function(){
-
-
-   // var userId = firebase.auth().currentUser.uid;
-    //var refObject = firebase.database().ref()["child"]("object")["child"]("logs");
-
-//    refObject.on("value", function (snap){
-  //  console.log(snap.val());
-
-    //});
-    
-     
-    
-    //});
-
-    
+       initApp();
     });
     
   </script>
